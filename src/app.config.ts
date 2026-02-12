@@ -3,6 +3,7 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/list/index',
     'pages/details/index',
+    'pages/index/calendar/calendar'
   ],
   window: {
     backgroundTextStyle: 'light',
