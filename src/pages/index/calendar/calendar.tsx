@@ -6,7 +6,6 @@ import Taro from '@tarojs/taro'
 import "@taroify/core/calendar/style"
 
 import { setChooseDate } from '@/store/date/chooseDate'
-import './calendar.scss'
 
 export default function CalendarPage() {
   const { startDate, endDate } = useSelector((state: any) => state.chooseDate)
@@ -66,8 +65,8 @@ export default function CalendarPage() {
             const selectedDates = value as Date[]
             if (selectedDates.length === 2) {
               setDate({ startDate: formatDate(selectedDates[0]), endDate: formatDate(selectedDates[1]) })
-              Taro.redirectTo({
-                url: '/pages/index/index'
+              Taro.navigateBack({
+                delta: 1  // 返回的页面数，1 表示上一页
               })
             }
           }}

@@ -1,9 +1,9 @@
-import { View, Text,Input,Picker, Swiper, SwiperItem, Image } from '@tarojs/components'
+import { View, Text,Input, Swiper, SwiperItem, Image } from '@tarojs/components'
 import { useSelector, useDispatch } from 'react-redux'
 import Taro, { useLoad } from '@tarojs/taro'
 import { useState ,useEffect} from 'react'
-import classNames from 'classnames'
 import { setHotelLabel } from '@/store/label/hotelLabel'
+import { setSelectedTheAddress } from '@/store/address/positionAddress'
 import './index.scss'
 
 
@@ -31,7 +31,7 @@ export default function Index() {
   ])
   const [bannerIndex, setBannerIndex] = useState(0)
   const changeDate=():void=>{
-    Taro.redirectTo({
+    Taro.navigateTo({
       url: '/pages/index/calendar/calendar'
     })
   }
@@ -46,13 +46,11 @@ export default function Index() {
     })
   }
   const choosePositon=():void=>{
-    console.log('选择位置')
-    Taro.redirectTo({
+    Taro.navigateTo({
       url: '/pages/index/position/position'
     })
   }
   const {startDate, endDate} = useSelector((state: any) => state.chooseDate)
-  const {selectedAddress} = useSelector((state: any) => state.address || { selectedAddress: null })
   const getMouth = (str) => String(str).split('/')[1]
   const getDay = (str) => String(str).split('/')[2]
   const getWeek = (str) => '日一二三四五六'.charAt(new Date(str).getDay())
@@ -80,6 +78,7 @@ export default function Index() {
   const dispatch = useDispatch()
 
   const { priceRange, hotelStar, Labels } = useSelector((state: any) => state.hotelLabel)
+  const {selectedAddress} = useSelector((state: any) => state.address || { selectedAddress: null })
   // 选中的价格范围
   const [selectedPrice, setSelectedPrice] = useState<string>(priceRange || '')
 
@@ -166,12 +165,13 @@ export default function Index() {
         <View className='pos-time'>
         <View className='position'>
             <View className='picker'>
-              地点
+              {selectedAddress?.province.slice(0, 2) || '位置'}
             </View>
           <View className='input'>
-            <Input 
-              placeholder='位置/品牌/酒店' 
-              value={selectedAddress?.address || ''}
+            <Input
+              placeholder='地点/品牌/酒店'
+              value={selectedAddress?.name || ''}
+              onInput={(e) => dispatch(setSelectedTheAddress(e.detail.value))}
             ></Input>
           </View>
             <View className='iconfont icon-dingwei icon' onClick={choosePositon}></View>

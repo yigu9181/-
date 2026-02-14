@@ -1,0 +1,208 @@
+.index{
+  height: 100vh;
+  width: 95%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  .tab{
+    top:0.5%;
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 100px;
+    .icon{
+      position: absolute;
+      font-size: 60px;
+      top:50%;
+      transform: translate(-15%, -50%) rotateZ(-90deg);
+      color: rgba(0,0,0,0.8);
+      background: #fff;
+    }
+    .tab-form{
+      position: relative;
+      top:50%;
+      left:60px;
+      height:70px;
+      width: 82%;
+      background: #f5f5f5;
+      border-radius: 35px;
+      transform: translate(0, -50%);
+      .tab-form-pos{
+        display: flex;
+        position: absolute;
+        top:50%;
+        transform: translate(0, -50%);
+        height: 80%;
+        padding:0 12px 0 5px;
+        align-items: center;
+        color:#1C6BC3;
+        font-size: 25px;
+        font-weight: 600;
+        left:10px;
+        border-right: 1px solid rgba(0,0,0,0.1);
+      }
+      .tab-form-time{
+        display: flex;
+        flex-direction: column;
+        justify-content:space-around;
+        position: absolute;
+        height:100%;
+        left:85px;
+        color: #1C6BC3;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .tab-form-interval{
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left:230px;
+        color: #1C6BC3;
+        font-size: 25px;
+        font-weight: 600;
+      }
+      .search{
+        display: flex;
+        align-items: center;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        left:280px;
+        color: #1C6BC3;
+        font-weight: 600;
+        .search-icon{
+          font-size: 60px;
+          margin-left: -10px;
+          color: rgba(0,0,0,0.8);
+        }
+        .search-input{
+          height: 50px;
+          width: 230px;
+          border: none;
+          outline: none;
+          background: none;
+          font-size: 30px;
+          color: #000000;
+        }
+      }
+    }
+    .tab-choose-position {
+      display: flex;
+      position: absolute;
+      justify-content: center;
+      top: 50%;
+      width: 70px;
+      height: 90px;
+      transform: translate(0, -50%);
+      left: 650px;
+      font-size: 25px;
+      .tab-icon{
+        position: absolute;
+        font-size: 50px;
+        font-weight: 400;
+        color: rgba(0, 0, 0, 0.8);
+      }
+      .tab-choose-position-text{
+        position: absolute;
+        top: 60%;
+        letter-spacing: 5px;
+        font-weight: 600;
+      }
+    }
+  }
+  .filter-box{
+    position: relative;
+    width: 100%;
+    top:0.5%;
+    .filter-text{
+      position: absolute;
+      top:50%;
+      transform: translate(10%,-50%);
+      font-weight: 600;
+    }
+    .filter{
+      display: flex;
+      justify-content: start;
+      left:15%;
+      position: absolute;
+      gap:20px;
+      font-size: 25px;
+      font-weight: 600;
+      color: #000000;
+      position: relative;
+      height: 60px;
+      width:86%;
+      padding: 0 10px;
+      box-sizing: border-box;
+      .filter-item{
+        padding: 10px;
+        height:40px;
+        line-height: 40px;
+        font-size: 30px;
+        font-weight: 400;
+        border-radius: 10px;
+      }
+      .active{
+        color:#fff;
+        background-color: #3690f7;
+      }
+    }
+  }
+  .Label{
+    position: relative;
+    display: flex;
+    justify-content: start;
+    top:1.5%;
+    width: 100%;
+    height: 5%;
+    margin:0;
+    font-size: 0;
+    transition: all 0.3s ease-in-out;
+    .arrow{
+      display: flex;
+      justify-content: start;
+      font-size: 25px;
+      color:#fff;
+      transition: all 0.3s ease-in-out;
+      .tail{
+        display: flex;
+        clip-path: polygon(100% 0%, 100% 100%, 0% 100%, 100% 50%, 0% 0%);
+        background-color:#3690f7;
+        height: 50px;
+        width:25px;
+        transform: translateX(5px);
+        transition: all 0.3s ease-in-out;
+      }
+      .body{
+        display: flex;
+        background-color:#3690f7;
+        height: 50px;
+        padding:0 20px;
+        border-radius: 7px;
+        z-index: 1;
+        line-height: 50px;
+        transition: all 0.3s ease-in-out;
+      }
+      .head {
+        display: flex;
+        width: 25px;
+        height: 50px;
+        clip-path: polygon(100% 50%, 0% 0%, 0% 100%);
+        background-color:#3690f7;
+        transform: translateX(-0.1px);
+        transition: all 0.3s ease-in-out;
+      }
+    }
+    .arrow2{
+      margin-left:-20px;
+    }
+    .arrow .body {
+      width: auto;
+      min-width: fit-content;
+      transition: width 0.5s ease-in-out;
+    }
+    .arrow {
+      overflow: visible;
+    }
+  }
+}

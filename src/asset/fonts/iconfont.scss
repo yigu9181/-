@@ -14,7 +14,13 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.icon-dingwei1:before {
+  content: "\e653";
+}
 
+.icon-sousuobeifen2:before {
+  content: "\e628";
+}
 .icon-jiantou-copy:before {
   content: "\e600";
 }

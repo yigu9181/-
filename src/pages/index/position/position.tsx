@@ -149,18 +149,18 @@ export default function PositionMap() {
       }
 
       console.log('准备设置marker和locationInfo')
-      
+
       // 提取地点信息 - 截取区后面的内容
       const extractLocation = (fullAddress: string, district: string): string => {
         if (!fullAddress || !district) return '';
-        
+
         const districtIndex = fullAddress.indexOf(district);
         if (districtIndex === -1) return fullAddress;
-        
+
         // 截取区后面的内容
         return fullAddress.substring(districtIndex + district.length).trim();
       };
-      
+
       const locationName = extractLocation(formattedAddress, component?.district || '');
 
       // 先设置 locationInfo - 确保数据完整且所有字段都是字符串
@@ -178,11 +178,11 @@ export default function PositionMap() {
 
       console.log('设置 locationInfo:', newLocationInfo)
       setLocationInfo(newLocationInfo)
-      
+
       // 再设置 marker
       console.log('设置 marker:', newMarker)
       setMarker(newMarker)
-      
+
       console.log('marker和locationInfo设置完成')
 
       // 移除 moveToLocation 调用
@@ -241,10 +241,10 @@ export default function PositionMap() {
       // 存储地址信息到Redux
       dispatch(setSelectedAddress(locationInfo))
       console.log('确认选择的地址并存储到Redux:', locationInfo)
-      
+
       // 返回首页
-      Taro.redirectTo({
-        url: '/pages/index/index'
+      Taro.navigateBack({
+        delta: 1
       })
     }
   }
@@ -273,7 +273,7 @@ export default function PositionMap() {
 
       {/* 重新定位按钮 */}
       <CoverView className='locate-btn' onClick={relocate}>
-        <CoverView className='locate-icon'>📍</CoverView>
+        <CoverView className='locate-icon iconfont icon-dingwei1'></CoverView>
       </CoverView>
 
       {/* 加载中 */}
@@ -307,7 +307,7 @@ export default function PositionMap() {
               <CoverView className='address-row'>
                 <CoverView className='address-label'>地点</CoverView>
                 <CoverView className='address-value'>
-                  {locationInfo.name || ''} 
+                  {locationInfo.name || ''}
                 </CoverView>
               </CoverView>
             </CoverView>
