@@ -66,7 +66,7 @@ export default function CalendarPage() {
             if (selectedDates.length === 2) {
               setDate({ startDate: formatDate(selectedDates[0]), endDate: formatDate(selectedDates[1]) })
               Taro.navigateBack({
-                delta: 1  // 返回的页面数，1 表示上一页
+                delta: 1
               })
             }
           }}
