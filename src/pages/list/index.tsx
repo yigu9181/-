@@ -170,11 +170,9 @@ export default function Index () {
           </View>
           <View className='search'>
             <View className='search-icon icon-sousuobeifen2 iconfont'></View>
-            <Input className='search-input'
-              placeholder='位置/品牌/酒店'
-              value={selectedAddress?.name || ''}
-              onInput={(e) => dispatch(setSelectedTheAddress(e.detail.value))}
-            ></Input>
+            <View className='search-input location-display'>
+              {selectedAddress?.name || '位置/品牌/酒店'}
+            </View>
           </View>
         </View>
         <View className='tab-choose-position' onClick={choosePositon}>

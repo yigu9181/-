@@ -227,11 +227,9 @@ export default function Index() {
               {selectedAddress?.province.slice(0, 2) || '位置'}
             </View>
           <View className='input'>
-            <Input
-              placeholder='地点/品牌/酒店'
-              value={selectedAddress?.name || ''}
-              onInput={(e) => dispatch(setSelectedTheAddress(e.detail.value))}
-            ></Input>
+            <View className='location-display'>
+              {selectedAddress?.name || '地点/品牌/酒店'}
+            </View>
           </View>
             <View className='iconfont icon-dingwei icon' onClick={choosePositon}></View>
         </View>
