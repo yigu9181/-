@@ -1,23 +1,22 @@
-import { View, Text, Input, Image } from '@tarojs/components'
+import { View, Text} from '@tarojs/components'
 import Taro, { useLoad } from '@tarojs/taro'
-import { setSelectedTheAddress } from '@/store/address/positionAddress'
 import { useSelector , useDispatch } from 'react-redux'
-import { useState } from 'react'
+import React,{ useState } from 'react'
+import { getMouth, getDay, getWeek, getDaysBetween } from '@/utils/calendar'
+import { choosePositon, changeDate, backToLastPage } from '@/utils/navigate'
+import HotelShow from '@/components/hotelShow/hotelShow'
 import hotelImage1 from '../../asset/pictures/酒店1.png';
 import hotelImage2 from '../../asset/pictures/酒店2.png';
 import hotelImage3 from '../../asset/pictures/酒店3.png';
 import hotelImage4 from '../../asset/pictures/酒店4.png';
 import hotelImage5 from '../../asset/pictures/酒店5.png';
-import tagImage from '../../asset/pictures/钻石_填充.png';
 import './index.scss'
-
-
 
 export default function Index () {
   useLoad(() => {
     console.log('Page loaded.')
   })
-  const filterItems = ['默认','热度排序','价格/星级','位置距离']
+  const filterItems = ['默认','热度排序','价格','星级']
   const [selectedFilter, setSelectedFilter] = useState(0)
   const handleFilterClick = (index: number) => {
     setSelectedFilter(index)
@@ -42,29 +41,7 @@ export default function Index () {
   if (hotelStar.length > 0) {
     arrows.push({ type: 'star', content: hotelStar })
   }
-  const changeDate=():void=>{
-    Taro.navigateTo({
-      url: '/pages/index/calendar/calendar'
-    })
-  }
   const { startDate, endDate } = useSelector((state: any) => state.chooseDate)
-  const getMouth = (str) => String(str).split('/')[1]
-  const getDay = (str) => String(str).split('/')[2]
-  const getWeek = (str) => '日一二三四五六'.charAt(new Date(str).getDay())
-  // 计算两个日期之间的天数差
-  function getDaysBetween(dateStr1: string, dateStr2: string): number {
-    // 将字符串转换为 Date 对象（支持 "2024-02-12" 或 "2024/02/12" 格式）
-    const date1 = new Date(dateStr1);
-    const date2 = new Date(dateStr2);
-    const diffTime = Math.abs(date2.getTime() - date1.getTime());
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  }
-  const choosePositon=():void=>{
-    Taro.navigateTo({
-      url: '/pages/index/position/position'
-    })
-  }
   const dispatch = useDispatch()
   const { selectedAddress } = useSelector((state: any) => state.address || { selectedAddress: null })
   const hotel=[
@@ -148,10 +125,7 @@ export default function Index () {
   return (
     <View className='index'>
       <View className='tab'>
-        <View className='iconfont icon-jiantou-copy icon' onClick={()=>Taro.navigateBack({
-            delta: 1
-          })}
-        >
+        <View className='iconfont icon-jiantou-copy icon' onClick={backToLastPage}>
         </View>
         <View className='tab-form'>
           <View className='tab-form-pos'>
@@ -202,47 +176,12 @@ export default function Index () {
       </View>
       }
       <View className='hotel'>
-
         <View className='shadow-sticky'>
           {/*用于添加阴影*/}
         </View>
         {/*酒店展示组件*/}
         {hotelList.map((i) => (
-          <View className='hotel-item' key={i.id} onClick={() => Taro.navigateTo({
-            url: '/pages/details/index?id=' + i.id
-          })}
-          >
-            <Image className='hotel-picture' src={i.image} />
-            <View className='hotel-text'>
-              <View className='hotel-name'>
-                <Text className='hotel-name-text'>{i.name}</Text>
-                <View className='hotel-tag-box'>
-                  {/*用于添加钻石*/}
-                  {Array.from({ length: i.star }, (_, j) => j).map((j) => (
-
-                    <Image className='hotel-tag' key={j} src={tagImage} />
-                  ))}
-                </View>
-              </View>
-              <View className='hotel-evaluation'>
-                <View className='hotel-point'>{i.point}</View>
-                <View className='hotel-rank'>{i.rank}</View>
-                <View className='hotel-like'>{i.like}</View>
-              </View>
-              <View className='hotel-position'>
-                {i.position}
-              </View>
-              <View className='hotel-introduction'>{i.introduction}</View>
-              <View className='hotel-label'>
-              {i.label.map((label) => (
-                <View className='hotel-label-item' key={label}>{label}</View>
-              ))}
-              </View>
-              <View className='hotel-Ranking'>{i.Ranking}</View>
-              <View className='hotel-price'><Text style='font-size: 15px'>￥</Text>{i.price}<Text style='font-size: 12px;margin-left:2px'>起</Text></View>
-              <View className='hotel-supplement'>{i.supplement}<Text className='icon-jiantou-copy iconfont icon-rotate'></Text></View>
-            </View>
-          </View>
+          <HotelShow key={i.id} i={i} />
         ))}
       </View>
     </View>

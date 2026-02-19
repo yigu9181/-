@@ -249,13 +249,13 @@
           transform: translateX(-50%);
           height:65px;
           display: -webkit-box;
-          -webkit-line-clamp: 2;    
+          -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: normal;
           line-height: 1.4;
-          max-height: calc(22px * 1.4 * 2);  
+          max-height: calc(22px * 1.4 * 2);
         }
       }
       .hotel-position:active{
@@ -299,35 +299,205 @@
     }
   }
 
-  .hotel-date {
-    background-color: #fff;
-    display: flex;
-    position: absolute;
-    top: 57%;
-    width: 95.5%;
-    height: 16%;
-    z-index: 2;
-    border-radius: 20px;
+.hotel-date {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 57%;
+  width: 95.5%;
+  min-height: 320px;
+  z-index: 2;
+  border-radius: 20px;
+  padding: 25px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+  .date-section {
+    margin-bottom: 20px;
+
+    .date-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+
+      .date-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .date-day {
+          font-size: 35px;
+          font-weight: 550;
+          color: #005EDA;
+        }
+
+        .date-week {
+          font-size: 28px;
+          color: #666;
+        }
+      }
+
+      .date-separator {
+        font-size: 28px;
+        color: #999;
+        margin: 0 15px;
+      }
+
+      .date-arrow {
+        font-size: 30px;
+        color: #666;
+      }
+    }
+
+    .date-note {
+      background-color: #FFF8E0;
+      padding: 15px;
+      border-radius: 10px;
+
+      .note-text {
+        font-size: 25px;
+        color: #ff9860;
+        font-weight: 500;
+      }
+    }
   }
 
-  .hotel-room {
-    background-color: #fff;
+  .filter-tags {
     display: flex;
-    position: absolute;
-    top: 74%;
-    width: 95.5%;
-    height: 16%;
-    z-index: 2;
-    border-radius: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    .filter-tag {
+      padding: 12px 25px;
+      background-color: #f5f5f5;
+      border-radius: 50px;
+      font-size: 30px;
+      color: #333;
+      border: 1px solid #e0e0e0;
+      transition: all 0.3s ease;
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+
+    .filter-more {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
   }
+}
+
+.hotel-room {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 80.5%;
+  width: 95.5%;
+  min-height: 500px;
+  z-index: 2;
+  border-radius: 20px;
+  padding: 25px 25px 140px 25px;
+  box-sizing: border-box;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+  .room-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .room-image {
+      width: 150px;
+      height: 100px;
+      border-radius: 10px;
+      overflow: hidden;
+
+      Image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .room-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .room-name {
+        font-size: 32px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .room-detail {
+        font-size: 25px;
+        color: #666;
+        line-height: 1.3;
+      }
+
+      .room-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        .room-tag {
+          padding: 5px 15px;
+          background-color: #E8F0FF;
+          border-radius: 5px;
+          font-size: 20px;
+          color: #005EDA;
+          border: 1px solid #D1E0FF;
+        }
+      }
+
+      .room-price {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+
+        .price {
+          font-size: 36px;
+          font-weight: 600;
+          color: #FF6B00;
+        }
+
+        .price-btn {
+          padding: 10px 25px;
+          background-color: #005EDA;
+          border-radius: 20px;
+          font-size: 25px;
+          color: #ffffff;
+          font-weight: 500;
+          transition: all 0.3s ease;
+
+          &:active {
+            transform: scale(0.95);
+            background-color: #0047B3;
+          }
+        }
+      }
+    }
+  }
+}
 
   .hotel-bottom {
     background-color: #fff;
-    display: fixed;
-    position: absolute;
-    bottom: 1%;
+    position: fixed;
+    bottom: 0;
     width: 95.5%;
-    height: 8%;
+    height: 9%;
     z-index: 2;
     .icon-box{
       position: relative;

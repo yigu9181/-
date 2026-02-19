@@ -1,8 +1,9 @@
-import { useState, useMemo  } from 'react'
+import React,{ useState, useMemo, useEffect } from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 import { View } from '@tarojs/components'
 import { Calendar } from '@taroify/core'
 import Taro from '@tarojs/taro'
+import { formatDate } from '@/utils/calendar'
 import "@taroify/core/calendar/style"
 
 import { setChooseDate } from '@/store/date/chooseDate'
@@ -10,15 +11,13 @@ import { setChooseDate } from '@/store/date/chooseDate'
 export default function CalendarPage() {
   const { startDate, endDate } = useSelector((state: any) => state.chooseDate)
   const [dateRange, setDateRange] = useState<Date[]>([])
-    useMemo(() => {
-      if (startDate && endDate) {
-        setDateRange([new Date(startDate), new Date(endDate)])
-      }
-    }, [startDate, endDate])
-  const formatDate = (date: Date) => {
-    return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`
-  }
 
+  // 使用useEffect来替代useMemo，因为我们需要在startDate或endDate变化时更新dateRange
+  useEffect(() => {
+    if (startDate && endDate) {
+      setDateRange([new Date(startDate), new Date(endDate)])
+    }
+  }, [startDate, endDate])
   // 计算两个月的日期范围
   const { minDate, maxDate } = useMemo(() => {
     const today = new Date()

@@ -1,6 +1,6 @@
 import { Map, View, CoverView } from '@tarojs/components'
 import Taro from '@tarojs/taro'
-import { useState, useEffect, useRef } from 'react'
+import React,{ useState, useEffect, useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { setSelectedAddress } from '../../../store/address/positionAddress'
 import './position.scss'

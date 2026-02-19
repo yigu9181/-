@@ -5,7 +5,7 @@
   "appid": "wxc7c4b39152a4df87",
   "setting": {
     "urlCheck": false,
-    "es6": false,
+    "es6": true,
     "enhance": false,
     "compileHotReLoad": false,
     "postcss": false,
@@ -21,8 +21,8 @@
     "disableUseStrict": false,
     "useCompilerPlugins": false,
     "condition": false,
-    "swc": false,
-    "disableSWC": true,
+    "swc": true,
+    "disableSWC": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],

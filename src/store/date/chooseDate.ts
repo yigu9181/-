@@ -3,8 +3,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 const chooseDateStore = createSlice({
   name: 'chooseDate',
   initialState: {
-    startDate:  null,
-    endDate: null
+    startDate:  '',
+    endDate: ''
   },
   reducers: {
     setChooseDate(state, action: PayloadAction<{ startDate: string, endDate: string}>) {
