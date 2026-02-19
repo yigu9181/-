@@ -80,7 +80,6 @@ export default function Index () {
 
     // 处理点击底部查看房型按钮，滑动到room板块
     const handleScrollToRoom = () => {
-      // 使用更简单的方法直接滚动到指定元素
       Taro.pageScrollTo({
         selector: '#roomSection',
         offsetTop: -100,
