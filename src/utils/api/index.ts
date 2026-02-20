@@ -53,14 +53,3 @@ export const hotelApi = {
   }
 };
 
-// 用户相关API
-export const userApi = {
-  // 获取订单列表
-  getOrderList: (params?: any) => {
-    return get('/orders', params);
-  },
-  // 获取收藏列表
-  getFavoriteList: () => {
-    return get('/favorites');
-  }
-};

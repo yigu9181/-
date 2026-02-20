@@ -41,10 +41,31 @@ export default function Index () {
     }
   }
 
-  const filterItems = ['默认','热度排序','价格','星级']
+  const filterItems = ['默认','按热度','按价格','按星级','按评分']
   const [selectedFilter, setSelectedFilter] = useState(0)
   const handleFilterClick = (index: number) => {
     setSelectedFilter(index)
+    Taro.showLoading({
+      title: '加载中...',
+      mask: true
+    })
+    setTimeout(() => {
+      Taro.hideLoading()
+      let newList = [...hotelList] 
+      
+      if (index === 0) {
+        newList.sort((a, b) => a.id - b.id)
+      } else if (index === 1) {
+        newList.sort((a, b) => b.like - a.like)
+      } else if (index === 2) {
+        newList.sort((a, b) => a.price - b.price)
+      } else if (index === 3) {
+        newList.sort((a, b) => b.star - a.star)
+      } else if (index === 4) {
+        newList.sort((a, b) => b.point - a.point)
+      }
+      setHotelList(newList) 
+    }, 300)
   }
   const { priceRange, hotelStar, Labels } = useSelector((state: any) => state.hotelLabel)
 
@@ -103,7 +124,7 @@ export default function Index () {
         </View>
       </View>
       <View className='filter-box'>
-        <View className='filter-text'>{'筛选 >'}</View>
+        <View className='filter-text'>{'排序 >'}</View>
         <View className='filter'>
          {filterItems.map((item, index) => (
             <View className={`filter-item ${selectedFilter === index ? 'active' : ''}`} key={index} onClick={() => handleFilterClick(index)}>{item}</View>

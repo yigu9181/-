@@ -15,7 +15,7 @@ export default function HotelShow({ i ,onClick}) {
       onClick(i.hotelId)
     }
   }
-  
+
   return (
     <View className='hotel-item' key={i.id} onClick={handleClick}>
       <Image className='hotel-picture' src={i.image} />
@@ -32,7 +32,8 @@ export default function HotelShow({ i ,onClick}) {
         <View className='hotel-evaluation'>
           <View className='hotel-point'>{i.point}</View>
           <View className='hotel-rank'>{i.rank}</View>
-          <View className='hotel-like'>{i.like}</View>
+          <View className='hotel-like'>{i.like}评论</View>
+          <View className='hotel-like'>{i.favorites}</View>
         </View>
         <View className='hotel-position'>
           {i.position}

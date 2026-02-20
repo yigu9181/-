@@ -29,7 +29,15 @@ export default function Index() {
     console.log('Hotel ID from URL:', urlHotelId)
     console.log('Hotel ID from Redux:', hotelId)
     // 优先级：URL参数 > Redux store > 默认值1
-    const idToUse = urlHotelId || hotelId || 1
+    // 注意：hotelId为0时是有效的，需要特殊处理
+    let idToUse
+    if (urlHotelId) {
+      idToUse = urlHotelId
+    } else if (hotelId !== undefined && hotelId !== null) {
+      idToUse = hotelId
+    } else {
+      idToUse = 1
+    }
     console.log('Using hotel ID:', idToUse)
     fetchHotelMessage(idToUse)
   })
@@ -168,7 +176,7 @@ export default function Index() {
             <View className='hotel-evaluation-item'>
               <View className='hotel-point'>{hotelMessage.message?.point}</View>
               <View className='hotel-rank'>{hotelMessage.message?.rank}</View>
-              <View className='hotel-like'>{hotelMessage.message?.like}</View>
+              <View className='hotel-like'>{hotelMessage.message?.like}评论</View>
               <View className='iconfont icon-jiantou-copy icon'></View>
             </View>
             <View className='hotel-evaluation'>{`"中式风格装修，舒适安逸"`}</View>

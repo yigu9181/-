@@ -100,128 +100,6 @@
       "email": "test@example.com"
     }
   ],
-  "orders": [
-    {
-      "id": "1",
-      "hotelId": 1,
-      "hotelName": "北京王府井希尔顿酒店",
-      "checkInDate": "2026-02-25",
-      "checkOutDate": "2026-02-27",
-      "roomType": "豪华大床房",
-      "price": 2400,
-      "status": "已支付",
-      "createTime": "2026-02-20 10:30:00",
-      "userId": 1
-    },
-    {
-      "id": "2",
-      "hotelId": 2,
-      "hotelName": "上海外滩华尔道夫酒店",
-      "checkInDate": "2026-03-01",
-      "checkOutDate": "2026-03-03",
-      "roomType": "江景套房",
-      "price": 4500,
-      "status": "待支付",
-      "createTime": "2026-02-20 14:20:00",
-      "userId": 1
-    },
-    {
-      "id": "3",
-      "hotelId": 3,
-      "hotelName": "广州四季酒店",
-      "checkInDate": "2026-02-22",
-      "checkOutDate": "2026-02-23",
-      "roomType": "商务大床房",
-      "price": 1000,
-      "status": "已完成",
-      "createTime": "2026-02-19 09:15:00",
-      "userId": 2
-    }
-  ],
-  "favorites": [
-    {
-      "id": "1",
-      "hotelId": 1,
-      "hotelName": "北京王府井希尔顿酒店",
-      "address": "北京市东城区王府井东街8号",
-      "price": 1200,
-      "score": 4.8,
-      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-      "collectTime": "2026-02-18 10:00:00",
-      "userId": 1
-    },
-    {
-      "id": "2",
-      "hotelId": 2,
-      "hotelName": "上海外滩华尔道夫酒店",
-      "address": "上海市黄浦区中山东一路2号",
-      "price": 1500,
-      "score": 4.9,
-      "image": "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8aG90ZWx8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60",
-      "collectTime": "2026-02-19 14:30:00",
-      "userId": 1
-    },
-    {
-      "id": "1af9",
-      "hotelId": 1
-    },
-    {
-      "id": "9247",
-      "hotelId": 1
-    },
-    {
-      "id": "1e66",
-      "hotelId": 1
-    },
-    {
-      "id": "1135",
-      "hotelId": 1
-    },
-    {
-      "id": "ca11",
-      "hotelId": 1
-    },
-    {
-      "id": "6e53",
-      "hotelId": 1
-    },
-    {
-      "id": "1bdd",
-      "hotelId": 1
-    },
-    {
-      "id": "a394",
-      "hotelId": 1
-    },
-    {
-      "id": "68d4",
-      "hotelId": 1
-    }
-  ],
-  "addresses": [
-    {
-      "id": "1",
-      "name": "张三",
-      "phone": "13800138000",
-      "province": "北京市",
-      "city": "北京市",
-      "district": "东城区",
-      "detail": "王府井大街1号",
-      "isDefault": true,
-      "userId": 1
-    },
-    {
-      "id": "2",
-      "name": "李四",
-      "phone": "13900139000",
-      "province": "上海市",
-      "city": "上海市",
-      "district": "黄浦区",
-      "detail": "外滩18号",
-      "isDefault": false,
-      "userId": 1
-    }
-  ],
   "hotels":[
     {
       "id": "1",
@@ -231,7 +109,7 @@
         "star": 5,
         "point": 4.8,
         "rank": "超棒",
-        "like": "4564点评",
+        "like": 4564,
         "favorites": "6.3万收藏",
         "image": "https://ts3.tc.mm.bing.net/th/id/OIP-C.UyfvxlTYy6MeyKcEOWV0hwHaD4?rs=1&pid=ImgDetMain&o=7&rm=3",
         "position": "近外滩 · 东方明珠",
@@ -368,7 +246,7 @@
         "star": 5,
         "point": 4.9,
         "rank": "超棒",
-        "like": "3821点评",
+        "like": 3821,
         "favorites": "5.8万收藏",
         "image": "https://www.tl-group.com/uploads/20240425/94e075c613beaa3c7cd181e4256f8cff.jpg",
         "position": "近外滩 · 南京东路",
@@ -504,7 +382,7 @@
         "star": 5,
         "point": 4.7,
         "rank": "很棒",
-        "like": "8921点评",
+        "like": 8921,
         "favorites": "12万收藏",
         "image": "https://img95.699pic.com/photo/50107/0921.jpg_wh860.jpg",
         "position": "外滩 · 南京东路",
@@ -640,7 +518,7 @@
         "star": 4,
         "point": 4.8,
         "rank": "超棒",
-        "like": "2156点评",
+        "like": 2156,
         "favorites": "3.2万收藏",
         "image": "https://ts1.tc.mm.bing.net/th/id/OIP-C.Nr1Jqgat-RIcFjyNrPSVhAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
         "position": "陆家嘴 · 环球金融中心",
@@ -776,7 +654,7 @@
         "star": 4,
         "point": 4.6,
         "rank": "很棒",
-        "like": "1563点评",
+        "like": 1563,
         "favorites": "2.1万收藏",
         "image": "https://ts3.tc.mm.bing.net/th/id/OIP-C.1aQueqNoQenRH1-UrBacYQHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
         "position": "静安区 · 兴业太古汇",
