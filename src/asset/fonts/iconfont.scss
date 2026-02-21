@@ -15,6 +15,25 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-chakan:before {
+  content: "\e604";
+}
+
+.icon-shanchu:before {
+  content: "\e662";
+}
+
+.icon-bianji:before {
+  content: "\e65d";
+}
+.icon-jiudian1:before {
+  content: "\e89b";
+}
+
+.icon-jia:before {
+  content: "\e603";
+}
+
 .icon-sheji:before {
   content: "\e65e";
 }

@@ -1,6 +1,8 @@
-import { View, Text } from '@tarojs/components'
-import { useEffect } from 'react'
+import { View, Text, Image } from '@tarojs/components'
+import { useEffect,useState } from 'react'
 import Taro from '@tarojs/taro'
+import AddHotel from '../../components/userPage/addHotel/addHotel'
+import MyHotel from '../../components/userPage/myHotel/myHotel'
 import './index.scss'
 
 export default function Index () {
@@ -11,13 +13,13 @@ export default function Index () {
     const userInfo = Taro.getStorageSync('userInfo')
     console.log('Token found:', token)
     console.log('User info found:', userInfo)
-    
+
     if (!token || !userInfo) {
       console.log('No token or user info, redirecting to login...')
       Taro.redirectTo({ url: '/pages/h5-login/index' })
       return
     }
-    
+
     console.log('User role:', userInfo.role)
     // 验证身份是否符合，用户页只能用户访问
     if (userInfo.role !== '用户') {
@@ -25,10 +27,28 @@ export default function Index () {
       Taro.redirectTo({ url: '/pages/h5-login/index' })
     }
   }, [])
+  const [activeTab, setActiveTab] = useState(true)
 
  return(
-   <View>
-     <Text>用户页</Text>
+   <View className='user-page'>
+      <View className='user-nav-tab'>
+        <View className={`user-nav-tab-text my-hotel ${activeTab ? 'active' : ''}`}
+          onClick={() => setActiveTab(true)}
+        >
+          <Text className='iconfont  icon-jiudian1 icon'></Text>
+          我的酒店
+        </View>
+        <View className={`user-nav-tab-text add-hotel ${!activeTab ? 'active' : ''}`}
+          onClick={() => setActiveTab(false)}
+        >
+          <Text className='iconfont icon-jia icon'></Text>
+          编辑酒店
+        </View>
+       <View className='user-nav-tab-text name'><Text className='iconfont icon-yonghu icon'></Text>用户名：hhhc123</View>
+       <View className='user-nav-tab-text logout'>退出</View>
+      </View>
+      <MyHotel activeTab={activeTab} />
+      <AddHotel activeTab={activeTab} />
    </View>
  )
 }

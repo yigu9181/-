@@ -4,7 +4,7 @@ import { View, Text, Image } from '@tarojs/components'
 import tagImage from '../../asset/pictures/钻石_填充.png'
 import './index.scss'
 
-export default function HotelShow({ i ,onClick}) {
+export default function HotelShow({ i , onClick}) {
   const handleClick = () => {
     console.log('Hotel clicked:', i)
     console.log('Hotel ID:', i.hotelId)
