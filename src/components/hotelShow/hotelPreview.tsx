@@ -2,7 +2,7 @@ import { View, Text, Image, Swiper, SwiperItem, ScrollView } from '@tarojs/compo
 import React, { useState } from 'react'
 import tagImage from '@/asset/pictures/钻石_填充.png'
 import { getMouth, getDay, getWeek, getDateDescription } from '@/utils/calendar'
-import './index.scss'
+import './hotelPreview.scss'
 
 interface HotelPreviewProps {
   hotelData?: any

@@ -2,20 +2,20 @@
   "users": [
     {
       "id": "1",
-      "username": "admin",
-      "password": "Admin123",
-      "ID": "管理员"
-    },
-    {
-      "id": "2",
       "username": "hhhc123",
       "password": "780860qwE",
       "ID": "管理员"
     },
     {
-      "id": "3",
+      "id": "2",
       "username": "zhanghao",
       "password": "325333aA",
+      "ID": "用户"
+    },
+    {
+      "id": "3",
+      "username": "1111111",
+      "password": "780860qwE",
       "ID": "用户"
     }
   ],

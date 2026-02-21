@@ -2,7 +2,7 @@ import React from 'react'
 import { listToDetail } from '@/utils/navigate'
 import { View, Text, Image } from '@tarojs/components'
 import tagImage from '../../asset/pictures/钻石_填充.png'
-import './index.scss'
+import './hotelShow.scss'
 
 export default function HotelShow({ i , onClick}) {
   const handleClick = () => {
