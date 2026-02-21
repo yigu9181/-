@@ -31,36 +31,54 @@ export const authApi = {
   // 登录
   login: async (username: string, password: string) => {
     try {
-      // json-server 查询语法：用 GET + 参数过滤
-      const res = await loginRequest({
-        url: `/users?username=${username}&password=${password}`,
-        method: 'GET',
-        isLogin: true  // 标记这是登录请求
-      })
+      console.log('Login parameters:', { username, password })
+      
+      // 先获取所有用户，然后在客户端进行匹配
+      // 这样可以避免 json-server 对数字开头用户名的特殊处理问题
+      const allUsersRes = await request({
+        url: '/users',
+        method: 'GET'
+      });
+      
+      console.log('All users:', allUsersRes.data)
+      
+      // 在客户端匹配用户名和密码
+      const matchedUser = allUsersRes.data.find((user: any) => {
+        console.log('Checking user:', { user, usernameMatch: user.username === username, passwordMatch: user.password === password })
+        return user.username === username && user.password === password;
+      });
+      
+      console.log('Matched user:', matchedUser)
+      
+      if (matchedUser) {
+        console.log('登录成功:', matchedUser)
+        
+        // 保存用户信息（注意是大写的 ID 表示角色）
+        const userInfo = {
+          id: matchedUser.id,           // "1"
+          username: matchedUser.username, // "admin"
+          role: matchedUser.ID,          // "管理员"（大写 ID）
+          token: `fake_token_${matchedUser.id}_${Date.now()}`
+        }
 
-      console.log('登录成功:', res.data)
+        Taro.setStorageSync('token', userInfo.token)
+        Taro.setStorageSync('userInfo', userInfo)
 
-      // 保存用户信息（注意是大写的 ID 表示角色）
-      const userInfo = {
-        id: res.data.id,           // "1"
-        username: res.data.username, // "admin"
-        role: res.data.ID,          // "管理员"（大写 ID）
-        token: `fake_token_${res.data.id}_${Date.now()}`
-      }
+        Taro.showToast({ title: '登录成功', icon: 'success' })
 
-      Taro.setStorageSync('token', userInfo.token)
-      Taro.setStorageSync('userInfo', userInfo)
+        // 根据角色跳转到不同页面
+        if (userInfo.role === '管理员') {
+          Taro.switchTab({ url: '/pages/h5-manager/index' })
+        } else {
+          Taro.switchTab({ url: '/pages/h5-user/index' })
+        }
 
-      Taro.showToast({ title: '登录成功', icon: 'success' })
-
-      // 根据角色跳转到不同页面
-      if (userInfo.role === '管理员') {
-        Taro.switchTab({ url: '/pages/h5-manager/index' })
+        return userInfo;
       } else {
-        Taro.switchTab({ url: '/pages/h5-user/index' })
+        console.log('登录失败，用户名或密码错误')
+        Taro.showToast({ title: '用户名或密码错误', icon: 'none' })
+        throw { code: 401, message: '用户名或密码错误' };
       }
-
-      return userInfo;
     } catch (err) {
       console.log('登录失败:', err)
       throw err;
@@ -70,24 +88,32 @@ export const authApi = {
   // 注册
   register: async (username: string, password: string, role: string) => {
     try {
-      // 检查用户名是否已存在
-      const existingUsers = await request({
-        url: `/users?username=${username}`,
+      console.log('Register parameters:', { username, password, role })
+      // 检查用户名是否已存在，不考虑身份，只要用户名相同就视为已存在
+      // 先获取所有用户，然后在客户端进行匹配
+      const allUsersRes = await request({
+        url: '/users',
         method: 'GET'
       });
-
-      if (existingUsers.data && existingUsers.data.length > 0) {
+      
+      console.log('All users for registration check:', allUsersRes.data)
+      
+      // 在客户端检查用户名是否已存在
+      const existingUser = allUsersRes.data.find((user: any) => {
+        console.log('Checking existing user:', { user, usernameMatch: user.username === username })
+        return user.username === username;
+      });
+      
+      console.log('Existing user found:', existingUser)
+      
+      if (existingUser) {
+        console.log('Username already exists:', username)
         Taro.showToast({ title: '用户名已存在', icon: 'none' });
         throw new Error('用户名已存在');
       }
 
-      // 获取最大用户ID
-      const allUsers = await request({
-        url: '/users',
-        method: 'GET'
-      });
-
-      const maxId = Math.max(...allUsers.data.map((user: any) => parseInt(user.id)), 0);
+      // 重用之前获取的用户数据来计算最大用户ID
+      const maxId = Math.max(...allUsersRes.data.map((user: any) => parseInt(user.id)), 0);
       const newId = (maxId + 1).toString();
 
       // 创建新用户

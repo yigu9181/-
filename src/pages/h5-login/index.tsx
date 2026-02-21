@@ -1,5 +1,5 @@
 import { View, Form, Input } from '@tarojs/components'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Taro from '@tarojs/taro'
 import './index.scss'
 import { authApi } from '../../utils/api/index'
@@ -11,6 +11,28 @@ export default function Index () {
   const [Surepassword, setSurepassword] = useState('')
   const [id, setId] = useState(0)
   const [loading, setLoading] = useState(false)
+
+  // 检查是否有 token，如果有则自动跳转对应页面
+  useEffect(() => {
+    console.log('Checking for token...')
+    const token = Taro.getStorageSync('token')
+    const userInfo = Taro.getStorageSync('userInfo')
+    console.log('Token found:', token)
+    console.log('User info found:', userInfo)
+    
+    if (token && userInfo) {
+      console.log('Token and user info exist, redirecting...')
+      console.log('User role:', userInfo.role)
+      // 根据角色跳转到对应页面
+      if (userInfo.role === '管理员') {
+        console.log('Redirecting to admin page...')
+        Taro.switchTab({ url: '/pages/h5-manager/index' })
+      } else {
+        console.log('Redirecting to user page...')
+        Taro.switchTab({ url: '/pages/h5-user/index' })
+      }
+    }
+  }, [])
 
   const handleIdClick = (d: number) => {
     setId(d)
@@ -93,6 +115,7 @@ export default function Index () {
       await authApi.register(username, password, role)
       // 注册成功后切换到登录界面
       setState(false)
+      setPassword('')
     } catch (error) {
       console.error('注册失败:', error)
     } finally {

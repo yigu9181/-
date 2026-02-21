@@ -129,6 +129,8 @@ export const del = <T = any>(url: string, data?: any, header?: any) => {
 
 export const loginRequest = (options) => {
   return new Promise((resolve, reject) => {
+    console.log('Login request URL:', `${BASE_URL}${options.url}`)
+    console.log('Login request options:', options)
     Taro.request({
       url: `${BASE_URL}${options.url}`,
       method: options.method || 'GET',
@@ -139,14 +141,20 @@ export const loginRequest = (options) => {
         'Authorization': options.needToken ? Taro.getStorageSync('token') || '' : ''
       },
       success: (res) => {
+        console.log('Login request response statusCode:', res.statusCode)
+        console.log('Login request response data:', res.data)
         // json-server 直接返回数组或对象，没有 code 字段
         if (res.statusCode === 200) {
           // 如果是登录接口，检查是否有匹配用户
           if (options.url.includes('/login') || options.isLogin) {
             const users = Array.isArray(res.data) ? res.data : [res.data]
+            console.log('Login request users:', users)
+            console.log('Login request users length:', users.length)
             if (users.length > 0) {
+              console.log('Login successful, user found:', users[0])
               resolve({ code: 200, data: users[0], message: '登录成功' })
             } else {
+              console.log('Login failed, no user found')
               Taro.showToast({ title: '用户名或密码错误', icon: 'none' })
               reject({ code: 401, message: '用户名或密码错误' })
             }
@@ -155,11 +163,13 @@ export const loginRequest = (options) => {
             resolve({ code: 200, data: res.data, message: 'success' })
           }
         } else {
+          console.log('Login request failed with status code:', res.statusCode)
           Taro.showToast({ title: '请求失败', icon: 'none' })
           reject(res.data)
         }
       },
       fail: (err) => {
+        console.log('Login request fail:', err)
         Taro.showToast({ title: '网络错误', icon: 'none' })
         reject(err)
       }
